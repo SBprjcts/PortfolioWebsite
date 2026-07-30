@@ -6,7 +6,7 @@ This is the source for my portfolio site. If you're here to look at the work rat
 
 ## About me
 
-I'm an ML research scientist at the University of Toronto, working under Dr. Jenny Cui on applied machine learning for public-safety and epidemiological decision-making. I graduated from the University of Toronto with an HBSc in Computer Science, Geospatial Data Science, and Mathematics. Separately, I contribute to the Medical Computer Vision and Robotics Lab on a diffusion-policy pipeline for surgical robotics.
+I'm an ML research scientist at the University of Toronto, working under Dr. Jenny Cui on applied machine learning for public-safety and epidemiological decision-making. I graduated from the University of Toronto with an HBSc in Computer Science, Geospatial Data Science, and Mathematics. Separately, I contributed to the Medical Computer Vision and Robotics Lab on a diffusion-policy pipeline for surgical robotics.
 
 Most of my work is applied ML on messy public data — epidemic forecasting, fire risk, emergency response. The thing I actually care about isn't benchmark numbers. It's validation discipline: verifying a premise before building on it, and designing evaluations that genuinely try to break my own claims. Two of my three main projects report honest negatives as the finding, one of them after six independent tests failed to beat a one-line baseline.
 

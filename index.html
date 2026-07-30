@@ -53,7 +53,7 @@ p:last-child{margin-bottom:0}
 .intro h1 em{font-style:normal;background:var(--rgb);background-size:200% 100%;animation:slide 18s linear infinite;-webkit-background-clip:text;background-clip:text;color:transparent}
 .intro .sub{margin-top:20px;color:var(--fg-2);font-size:15px}
 .intro .sub b{color:var(--fg);font-weight:500}
-.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px 36px;margin-top:34px;padding-top:24px;border-top:1px solid var(--rule);font-size:13px}
+.facts{display:grid;grid-template-columns:repeat(4,auto);justify-content:space-between;gap:20px 36px;margin-top:34px;padding-top:24px;border-top:1px solid var(--rule);font-size:13px}
 .facts div{display:flex;flex-direction:column;gap:5px;padding:0}
 .facts dt{color:var(--fg-3);min-width:0;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
 .facts dd{margin:0;color:var(--fg-2)}
@@ -151,14 +151,14 @@ footer{margin-top:80px;padding-top:20px;border-top:1px solid var(--rule);display
 @media(max-width:1000px){
   main,.nav-in{padding-left:32px;padding-right:32px}
   .about{grid-template-columns:180px 1fr;gap:36px}
-  .facts,#contact dl.meta{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .facts,#contact dl.meta{grid-template-columns:repeat(2,minmax(0,1fr));justify-content:normal}
 }
 @media(max-width:640px){
   main,.nav-in{padding-left:20px;padding-right:20px}
   section{padding-top:52px}
   .about{grid-template-columns:1fr;gap:22px}
   .shot{max-width:180px}
-  .facts,#contact dl.meta{grid-template-columns:1fr;gap:16px 0}
+  .facts,#contact dl.meta{grid-template-columns:1fr;gap:16px 0;justify-content:normal}
   summary{grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;align-items:start}
   .p-name{grid-row:1;grid-column:1;line-height:1.35}
   .p-mark{grid-row:1;grid-column:2}
@@ -212,7 +212,7 @@ footer{margin-top:80px;padding-top:20px;border-top:1px solid var(--rule);display
     <div>
       <p>I graduated from the University of Toronto with an HBSc in Computer Science, Geospatial Data Science, and Mathematics. I'm now an ML research scientist working under Dr. Jenny Cui.</p>
       <p>My work is involved in applied machine learning on messy public data: epidemic forecasting, fire risk, emergency response. The through-line isn't benchmark-topping numbers. It's validation discipline and the willingness to kill a direction that doesn't earn its keep. Two of my three main projects report honest negatives as findings, one of them after six independent tests failed to beat a one-line baseline.</p>
-      <p>I care most about the habit of verifying a premise before building on it, and about designing evaluations that actively try to break my own claims. Separately, I contribute to the Medical Computer Vision and Robotics Lab on a diffusion-policy pipeline that learns visuomotor manipulation from demonstrations.</p>
+      <p>I care most about the habit of verifying a premise before building on it, and about designing evaluations that actively try to break my own claims. Separately, I contributed to the Medical Computer Vision and Robotics Lab on a diffusion-policy pipeline that learns visuomotor manipulation from demonstrations.</p>
       <dl class="meta">
         <div><dt>Supervisor</dt><dd>Dr. Jenny Cui</dd></div>
         <div><dt>Focus</dt><dd>Applied ML, geospatial data, causal validation, probabilistic forecasting</dd></div>
