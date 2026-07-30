@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Saif Buheis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" />
+<style>
+:root{
+  --bg:#0b0d0b;--fg:#dbe0d4;--fg-2:#9aa393;--fg-3:#828d7a;
+  --accent:#a3ff5e;--rule:rgba(219,224,212,.13);
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --rgb:linear-gradient(90deg,#a3ff5e,#5effc3,#5ed4ff,#b061ff,#ff5ad6,#ffd34a,#a3ff5e);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 15px/1.75 var(--mono);-webkit-font-smoothing:antialiased}
+::selection{background:var(--accent);color:var(--bg)}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(163,255,94,.3)}
+a:hover{border-bottom-color:var(--accent)}
+h1,h2,h3{font-weight:500;margin:0}
+
+/* rgb underglow */
+@keyframes slide{to{background-position:200% 0}}
+.glow{position:fixed;top:0;left:0;right:0;height:2px;z-index:20;background:var(--rgb);background-size:200% 100%;animation:slide 18s linear infinite}
+.glow::after{content:'';position:absolute;top:0;left:0;right:0;height:22px;background:var(--rgb);background-size:200% 100%;animation:slide 18s linear infinite;filter:blur(14px);opacity:.3}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:10;background:rgba(11,13,11,.93);backdrop-filter:blur(6px);border-bottom:1px solid var(--rule)}
+.nav-in{max-width:760px;margin:0 auto;padding:16px 28px 14px;display:flex;justify-content:space-between;align-items:baseline;gap:20px}
+.nav-name{font-size:13px;font-weight:500;color:var(--fg);border:0}
+.nav-links{display:flex;gap:18px;font-size:12px;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{position:relative;color:var(--fg-3);border:0;white-space:nowrap;padding-bottom:4px}
+.nav-links a:hover{color:var(--fg)}
+.nav-links a.on{color:var(--fg)}
+.nav-links a.on::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1.5px;background:var(--rgb);background-size:200% 100%;animation:slide 18s linear infinite}
+
+/* layout */
+main{max-width:760px;margin:0 auto;padding:0 28px 120px}
+section{padding:64px 0 0;scroll-margin-top:70px}
+.label{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-3);padding-bottom:12px;margin-bottom:28px;position:relative}
+.label::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--rgb);background-size:200% 100%;animation:slide 18s linear infinite;opacity:.55}
+p{margin:0 0 18px;max-width:66ch;text-wrap:pretty}
+p:last-child{margin-bottom:0}
+
+/* intro */
+.intro{padding:76px 0 0}
+.intro h1{font-size:clamp(26px,4.4vw,34px);letter-spacing:-.02em;line-height:1.25;max-width:25ch}
+.intro h1 em{font-style:normal;background:var(--rgb);background-size:200% 100%;animation:slide 18s linear infinite;-webkit-background-clip:text;background-clip:text;color:transparent}
+.intro .sub{margin-top:20px;color:var(--fg-2);font-size:15px}
+.intro .sub b{color:var(--fg);font-weight:500}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 32px;margin-top:32px;padding-top:22px;border-top:1px solid var(--rule);font-size:13px}
+.facts div{display:flex;gap:12px;padding:3px 0}
+.facts dt{color:var(--fg-3);min-width:76px}
+.facts dd{margin:0;color:var(--fg-2)}
+.facts dd .live{color:var(--accent)}
+
+/* about */
+.about{display:grid;grid-template-columns:150px 1fr;gap:32px;align-items:start}
+.shot{position:relative;padding:2px;background:var(--rgb);background-size:200% 100%;animation:slide 18s linear infinite}
+.shot img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center 20%;display:block;filter:grayscale(.25)}
+.about .cap{font-size:11px;color:var(--fg-3);margin-top:8px}
+
+/* meta list */
+dl.meta{margin:24px 0 0;font-size:13px;display:grid;gap:4px}
+dl.meta div{display:flex;gap:14px}
+dl.meta dt{color:var(--fg-3);min-width:92px;flex:0 0 92px}
+dl.meta dd{margin:0;color:var(--fg-2)}
+dl.meta dd b{color:var(--fg);font-weight:500}
+dl.meta dd .num{white-space:nowrap;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+
+/* role entry */
+.entry-hd{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap}
+.entry-hd h3{font-size:16px}
+.entry-hd .when{font-size:12px;color:var(--fg-3);white-space:nowrap}
+.where{font-size:13px;color:var(--fg-2);margin-top:2px}
+.lede{margin-top:14px;color:var(--fg-2);font-size:14px}
+
+/* strands */
+.strand{margin-top:34px}
+.strand h4{font-size:14px;font-weight:500;color:var(--fg);margin:0 0 4px}
+.strand .n{font-size:12px;color:var(--fg-3);margin-bottom:12px}
+.strand h6{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-3);margin:20px 0 9px}
+
+ul.list{list-style:none;padding:0;margin:0;display:grid;gap:9px}
+ul.list li{position:relative;padding-left:18px;font-size:14px;color:var(--fg-2);line-height:1.65;max-width:64ch}
+ul.list li::before{content:'';position:absolute;left:2px;top:.72em;width:5px;height:1px;background:var(--fg-3)}
+
+/* details */
+details{border-bottom:1px solid var(--rule)}
+summary{list-style:none;cursor:pointer;padding:18px 0;display:grid;grid-template-columns:1fr auto auto;gap:16px;align-items:baseline;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--rgb);background-size:200% 100%;animation:slide 18s linear infinite;opacity:0;transition:opacity .2s}
+summary:hover::after,details[open] summary::after{opacity:.7}
+summary:hover .p-name{color:var(--fg)}
+.p-name{font-size:16px;font-weight:500;transition:color .15s}
+.p-meta{font-size:12px;color:var(--fg-3);white-space:nowrap}
+.p-mark{font-size:14px;width:12px;text-align:right;background:var(--rgb);background-size:200% 100%;animation:slide 18s linear infinite;-webkit-background-clip:text;background-clip:text;color:transparent}
+.p-body{padding:6px 0 30px}
+.p-sub{font-size:12px;color:var(--fg-3);margin-bottom:18px}
+.p-body h5{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-3);margin:24px 0 10px}
+.p-body h5:first-of-type{margin-top:0}
+.p-body p{font-size:14px;color:var(--fg-2)}
+.tags{display:flex;flex-wrap:wrap;gap:6px 10px;font-size:12px;color:var(--fg-2)}
+.tags span::after{content:'\00b7';color:var(--fg-3);margin-left:10px}
+.tags span:last-child::after{content:''}
+.embed{position:relative;aspect-ratio:16/9;background:#000;border:1px solid var(--rule);margin:18px 0 10px;overflow:hidden}
+.embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.embed .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:.72;transition:opacity .25s}
+.embed .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:10px;background:0;border:0;cursor:pointer;font:500 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--fg);padding:0}
+.embed .play span{position:relative;padding:9px 16px;background:rgba(11,13,11,.72);backdrop-filter:blur(4px);border:1px solid rgba(219,224,212,.35)}
+.embed .play:hover .poster,.embed:hover .poster{opacity:.9}
+.embed .play:hover span{border-color:var(--fg);background:rgba(11,13,11,.85)}
+.vid-alt{font-size:12px;color:var(--fg-3);margin-bottom:22px}
+.vid-alt a{font-size:12px}
+
+/* figure images */
+.figs{display:grid;gap:14px;margin:18px 0 4px}
+.figs.two{grid-template-columns:1fr 1fr;align-items:start}
+.figs figure{margin:0}
+.figs img{width:100%;display:block;border:1px solid var(--rule);background:#fff}
+.figs figcaption{font-size:11px;color:var(--fg-3);margin-top:7px;line-height:1.5}
+@media(max-width:640px){.figs.two{grid-template-columns:1fr}}
+
+/* stack */
+.stack-group{padding:0 0 22px;margin-bottom:22px;border-bottom:1px solid var(--rule)}
+.stack-group:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.stack-group h3{font-size:13px;font-weight:500;margin-bottom:10px}
+.stack-group p{font-size:14px;color:var(--fg-2);margin:0}
+
+/* contact */
+.contact-lead{font-size:17px;max-width:44ch;margin-bottom:26px}
+.mail{font-size:19px}
+footer{margin-top:80px;padding-top:20px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;font-size:11px;color:var(--fg-3);flex-wrap:wrap;gap:10px}
+
+@media(max-width:640px){
+  main,.nav-in{padding-left:20px;padding-right:20px}
+  section{padding-top:52px}
+  .about{grid-template-columns:1fr;gap:22px}
+  .shot{max-width:180px}
+  .facts{grid-template-columns:1fr}
+  summary{grid-template-columns:1fr auto;gap:8px 12px}
+  .p-meta{grid-column:1;grid-row:2;padding-bottom:2px}
+  .p-mark{grid-row:1}
+  dl.meta div{flex-direction:column;gap:0}
+  dl.meta dt{flex:0 0 auto}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="glow"></div>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a href="#top" class="nav-name">Saif Buheis</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#research">Research Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#stack">Stack</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+
+<header class="intro">
+  <h1>ML research scientist building models that <em>survive the tests built to break them</em>.</h1>
+  <p class="sub">I work on applied machine learning for public-safety and epidemiological decision-making at the <b>University of Toronto Mississauga</b>, and contribute to a diffusion-policy pipeline for surgical robotics in a separate lab.</p>
+  <dl class="facts">
+    <div><dt>Degree</dt><dd>BSc, UTM, class of 2026</dd></div>
+    <div><dt>Based</dt><dd>Toronto, ON</dd></div>
+    <div><dt>Status</dt><dd><span class="live">Available now</span> for ML / SWE roles</dd></div>
+    <div><dt>Email</dt><dd><a href="mailto:saif.buheis@gmail.com">saif.buheis@gmail.com</a></dd></div>
+  </dl>
+</header>
+
+<section id="about">
+  <div class="label">About</div>
+  <div class="about">
+    <div>
+      <div class="shot"><img src="assets/saif-portrait.png" alt="Saif Buheis" /></div>
+      <div class="cap">Toronto, 2026</div>
+    </div>
+    <div>
+      <p>I graduated from the University of Toronto Mississauga in 2026 with a BSc in Computer Science, Geospatial Data Science, and Mathematics. I'm now an ML research scientist working under Dr. Jenny Cui.</p>
+      <p>My work is applied machine learning on messy public data: epidemic forecasting, fire risk, emergency response. The through-line isn't benchmark-topping numbers. It's validation discipline and the willingness to kill a direction that doesn't earn its keep. Two of my three main projects report honest negatives as findings, one of them after six independent tests failed to beat a one-line baseline.</p>
+      <p>I care most about the habit of verifying a premise before building on it, and about designing evaluations that actively try to break my own claims. Separately, I contribute to the Medical Computer Vision and Robotics Lab on a diffusion-policy pipeline that learns visuomotor manipulation from demonstrations.</p>
+      <dl class="meta">
+        <div><dt>Supervisor</dt><dd>Dr. Jenny Cui</dd></div>
+        <div><dt>Focus</dt><dd>Applied ML, geospatial data, causal validation, probabilistic forecasting</dd></div>
+        <div><dt>Outside</dt><dd>Lifting, hiking, window shopping</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="research">
+  <div class="label">Research experience</div>
+  <div class="entry-hd">
+    <h3>ML Research Scientist</h3>
+    <div class="when">Jan 2026 &ndash; present</div>
+  </div>
+  <div class="where">University of Toronto Mississauga &middot; under Dr. Jenny Cui</div>
+  <p class="lede">I own each project end to end: data acquisition, cleaning, modelling, evaluation, manuscript writing, and peer-review submission. Every one is built to a publication standard, with the validation ladder and the negative results treated as first-class output rather than an appendix.</p>
+
+  <div class="strand">
+    <h4>Physics-informed ST-GNN for COVID-19 forecasting</h4>
+    <div class="n">Lead author, 1 manuscript</div>
+    <ul class="list">
+      <li>Graph neural networks with compartmental disease mechanics embedded directly in the network, so the learned internals stay epidemiologically interpretable.</li>
+      <li>The first direction tied a one-line baseline under six independent tests, so I killed it and pivoted, but only after verifying the new premise was worth building on.</li>
+      <li>The result beats persistence by 5.1% MAE at two weeks and 8.8% at four, transfers zero-shot to held-out states, and independently recovers the roughly 48% Omicron severity drop reported in the literature.</li>
+    </ul>
+  </div>
+
+  <div class="strand">
+    <h4>Toronto fire risk</h4>
+    <div class="n">Lead author, 1 manuscript</div>
+    <ul class="list">
+      <li>Six public datasets on an H3 hex grid, behind a four-rung spatio-temporal validation ladder with leakage guards.</li>
+      <li>The finding is a measurement rather than a score: roughly half the discriminable fire-severity signal exists only after an investigator's report, not at dispatch. It survives four target definitions and a weather control.</li>
+      <li>My own leakage guards caught two real bugs, one of which flipped a conclusion. 26 tests assert behaviour, including one that fails if the blocking ever silently stops working.</li>
+    </ul>
+  </div>
+
+  <div class="strand">
+    <h4>Emergency response delay prediction</h4>
+    <div class="n">Lead author, 1 manuscript</div>
+    <ul class="list">
+      <li>Roughly 1.75 million Toronto incidents from 2012 to 2024, fusing incident logs, the road network, weather, and area-level socio-economic data.</li>
+      <li>Found silent data corruption in 36% of rows, where privacy-suppressed coordinates stored as zeros were poisoning a core feature and passing every median-based sanity check.</li>
+      <li>Reported the proposed GNN as an honest null and explained why: its embeddings help the linear baselines but are redundant with what the trees already extract.</li>
+    </ul>
+  </div>
+
+  <div class="strand">
+    <h4>Toronto urban-safety series</h4>
+    <div class="n">Lead author, 4+ manuscripts</div>
+    <ul class="list">
+      <li>Crash-severity and hotspot models over 640,000+ collisions, framed as rankers so a city can triage interventions, each paired with an equity audit.</li>
+      <li>Two findings worth the papers: safety-dominant and equity-forward priority maps disagree, and single-mode hotspot maps each miss roughly half of the other modes' top-priority segments.</li>
+    </ul>
+  </div>
+
+  <div class="strand">
+    <h4>Edmonton remote-sensing study</h4>
+    <div class="n">Lead author, 1 manuscript</div>
+    <ul class="list">
+      <li>Predicts pothole reports across eight years and roughly 400 neighbourhoods from Sentinel-2 imagery, terrain, and weather, using a negative-control outcome to bound reporting bias.</li>
+    </ul>
+  </div>
+
+  <div class="strand">
+    <h4>Medical Computer Vision and Robotics Lab</h4>
+    <div class="n">Contributor, separate lab</div>
+    <ul class="list">
+      <li>A diffusion-policy pipeline that learns visuomotor manipulation from demonstrations, deployed on a da Vinci surgical robot.</li>
+    </ul>
+  </div>
+
+</section>
+
+<section id="projects">
+  <div class="label">Projects</div>
+
+  <details>
+    <summary>
+      <span class="p-name">Cadillac F1 Dashboard</span>
+      <span class="p-meta">Feb 2026 &middot; top 10%</span>
+      <span class="p-mark">+</span>
+    </summary>
+    <div class="p-body">
+      <h5>Overview</h5>
+      <p>A four-person CS team, competing against finance and business squads, built a full-stack dashboard addressing Cadillac F1's 2026 launch risks. Placed top 10% at the Global Launch Challenge. The pitch combined predictive maintenance, real-time brand-sentiment monitoring, and an operational view of launch readiness in one product surface.</p>
+      <div class="embed" data-vid="Y37IJhM-BAA">
+        <button class="play" type="button" aria-label="Play the Cadillac F1 Dashboard demo">
+          <img class="poster" src="https://i.ytimg.com/vi/Y37IJhM-BAA/hqdefault.jpg" alt="" />
+          <span>&#9654;&ensp;Play demo</span>
+        </button>
+      </div>
+      <div class="vid-alt">Figure 1. Video demo. <a href="https://www.youtube.com/watch?v=Y37IJhM-BAA" target="_blank" rel="noopener">Watch on YouTube</a></div>
+      <h5>Highlights</h5>
+      <ul class="list">
+        <li>19&times; ROI on predictive maintenance. A gradient boosting model at R&sup2; = 0.91 forecasts remaining useful life for eight car components, enabling &pound;2.85M in savings per critical intervention.</li>
+        <li>Real-time brand-sentiment monitoring built from scraped X and Reddit data, themed into dashboard panels for the comms team.</li>
+        <li>Top 10% finish across a field of finance, business, and engineering teams.</li>
+      </ul>
+      <h5>Stack</h5>
+      <div class="tags"><span>XGBoost</span><span>Flask</span><span>React</span><span>PostgreSQL</span><span>Selenium</span><span>Python</span></div>
+      <h5>Links</h5>
+      <p><a href="https://www.youtube.com/watch?v=Y37IJhM-BAA" target="_blank" rel="noopener">Video demo</a></p>
+    </div>
+  </details>
+
+  <details>
+    <summary>
+      <span class="p-name">Resume Roaster</span>
+      <span class="p-meta">Nov 2025 &ndash; Jan 2026 &middot; 1,000+ resumes</span>
+      <span class="p-mark">+</span>
+    </summary>
+    <div class="p-body">
+      <h5>Overview</h5>
+      <p>A retrieval-augmented generation product live at <a href="https://amicooked.ca" target="_blank" rel="noopener">amicooked.ca</a> that delivers blunt, structured feedback on uploaded resumes. The serverless backend pairs Claude 3.5 Sonnet with FAISS retrieval on a Lambda-hosted Python pipeline, with a containerized chunk-and-embed step running in Docker.</p>
+      <div class="embed" data-vid="DxOL2ieT9aM">
+        <button class="play" type="button" aria-label="Play the Resume Roaster demo">
+          <img class="poster" src="https://i.ytimg.com/vi/DxOL2ieT9aM/hqdefault.jpg" alt="" />
+          <span>&#9654;&ensp;Play demo</span>
+        </button>
+      </div>
+      <div class="vid-alt">Figure 1. Video demo. <a href="https://youtu.be/DxOL2ieT9aM" target="_blank" rel="noopener">Watch on YouTube</a></div>
+      <h5>Highlights</h5>
+      <ul class="list">
+        <li>1,000+ resumes processed live with a 100% success rate.</li>
+        <li>35% latency reduction via Claude 3.5 Sonnet and RAG parameter tuning, bypassing AWS Lambda timeout limits.</li>
+        <li>Cost engineered down to $0.011 per roast on a FAISS and Lambda serverless backend.</li>
+      </ul>
+      <h5>Stack</h5>
+      <div class="tags"><span>Next.js 15</span><span>Python</span><span>AWS Bedrock</span><span>Lambda</span><span>FAISS</span><span>Docker</span></div>
+      <h5>Links</h5>
+      <p><a href="https://amicooked.ca" target="_blank" rel="noopener">amicooked.ca</a> &middot; <a href="https://youtu.be/DxOL2ieT9aM" target="_blank" rel="noopener">Video demo</a></p>
+    </div>
+  </details>
+
+  <details>
+    <summary>
+      <span class="p-name">ML-Powered Bill Categorizer</span>
+      <span class="p-meta">Aug &ndash; Dec 2025 &middot; 96% accuracy</span>
+      <span class="p-mark">+</span>
+    </summary>
+    <div class="p-body">
+      <h5>Overview</h5>
+      <p>A bill-categorization service designed for incremental learning. An SGDClassifier ingests user-corrected labels in real time, with a PostgreSQL schema built around a retraining feedback loop. NumPy and Pandas ETL keeps inference latency low.</p>
+      <div class="figs two">
+        <figure>
+          <img src="assets/bill-entry.jpg" alt="Expense entry form with date, amount, vendor, and description fields" />
+          <figcaption>Figure 1. Expense entry. The free-text description is what the classifier reads.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/bill-categories.jpg" alt="Suggested categories Groceries, Clothing, and Coffee, with Groceries selected" />
+          <figcaption>Figure 2. Ranked category suggestions. Accepting or overriding one feeds the retraining loop.</figcaption>
+        </figure>
+      </div>
+      <h5>Highlights</h5>
+      <ul class="list">
+        <li>96% accuracy on 5,000+ simulated transactions, trained on 1,000+ labeled records.</li>
+        <li>PostgreSQL schema designed for incremental retraining from user feedback.</li>
+        <li>Vectorized preprocessing for low-latency inference.</li>
+      </ul>
+      <h5>Stack</h5>
+      <div class="tags"><span>Python</span><span>scikit-learn</span><span>FastAPI</span><span>Angular</span><span>PostgreSQL</span></div>
+    </div>
+  </details>
+
+  <details>
+    <summary>
+      <span class="p-name">Roof Damage Detection</span>
+      <span class="p-meta">Jul &ndash; Aug 2025 &middot; +12% IoU</span>
+      <span class="p-mark">+</span>
+    </summary>
+    <div class="p-body">
+      <h5>Overview</h5>
+      <p>A computer-vision pipeline that quantifies roof damage from drone imagery. A U-Net segmentation model is paired with an OpenCV and GDAL ETL pipeline that neutralizes shadows and image artifacts before training. A sliding-window tiling strategy handles arbitrarily large GeoTIFFs and aggregates damage area in square metres.</p>
+      <div class="figs two">
+        <figure>
+          <img src="assets/roof-input.jpg" alt="Overhead drone orthophoto of a large flat commercial roof showing weathering and dark patches" />
+          <figcaption>Figure 1. Input orthophoto. Shadows and surface staining are what the ETL pipeline has to neutralize before training.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/roof-segmentation.jpg" alt="Segmentation mask over the same roof, damaged areas in red and undamaged in green" />
+          <figcaption>Figure 2. Predicted segmentation mask, georeferenced. Damaged area is aggregated in square metres for downstream estimation.</figcaption>
+        </figure>
+      </div>
+      <h5>Highlights</h5>
+      <ul class="list">
+        <li>12% IoU improvement from shadow and artifact preprocessing.</li>
+        <li>Data augmentation and weighted loss for rare damage classes.</li>
+        <li>Sliding-window tiling lets the model run on full-size GeoTIFFs.</li>
+      </ul>
+      <h5>Stack</h5>
+      <div class="tags"><span>PyTorch</span><span>OpenCV</span><span>GDAL</span><span>ArcGIS Pro</span><span>Python</span></div>
+    </div>
+  </details>
+
+  <details>
+    <summary>
+      <span class="p-name">Student Budgeting Web App</span>
+      <span class="p-meta">Sep &ndash; Dec 2024 &middot; 1,000+ transactions</span>
+      <span class="p-mark">+</span>
+    </summary>
+    <div class="p-body">
+      <h5>Overview</h5>
+      <p>A personal-finance app aimed at students. Tracks 1,000+ transactions with dynamic recalculation logic, visualizes spending trends, and routes activity through an OpenAI-backed advisory engine that generates personalized financial plans.</p>
+      <div class="figs">
+        <figure>
+          <img src="assets/budget-landing.jpg" alt="Sofa.King landing page on a dark background with a feature grid covering spending tracking, savings goals, AI insights, and multi-currency support" />
+          <figcaption>Figure 1. Landing page and feature set. AI insights and multi-currency support are the two features that drove most of the backend work.</figcaption>
+        </figure>
+      </div>
+      <h5>Highlights</h5>
+      <ul class="list">
+        <li>1,000+ transactions tracked with real-time trend visualizations.</li>
+        <li>OpenAI API integration for personalized financial planning.</li>
+        <li>RESTful APIs with dynamic recalculation logic.</li>
+      </ul>
+      <h5>Stack</h5>
+      <div class="tags"><span>React</span><span>TypeScript</span><span>Flask</span><span>OpenAI</span><span>PostgreSQL</span></div>
+    </div>
+  </details>
+</section>
+
+<section id="stack">
+  <div class="label">Stack</div>
+  <div class="stack-group">
+    <h3>Machine learning</h3>
+    <p>PyTorch, PyTorch Geometric, Hugging Face, XGBoost, LightGBM, Random Forest, scikit-learn, SHAP, OpenCV, NumPy, Pandas, SciPy, statsmodels, RAG and LangGraph</p>
+  </div>
+  <div class="stack-group">
+    <h3>Geospatial and data engineering</h3>
+    <p>GeoPandas, OSMnx, H3, Shapely, GDAL, ArcGIS Pro, REST and bulk API ingestion, geospatial ETL, provenance manifests</p>
+  </div>
+  <div class="stack-group">
+    <h3>Systems and infrastructure</h3>
+    <p>Python, FastAPI, Flask, PostgreSQL, AWS Lambda and Bedrock, Docker, pytest, Java</p>
+  </div>
+  <div class="stack-group">
+    <h3>Product and frontend</h3>
+    <p>TypeScript, React, Next.js, Angular, Node and Express, SQL, R</p>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="label">Contact</div>
+  <p class="contact-lead">If any of this is relevant to what you're building, I'd be glad to talk.</p>
+  <p class="mail"><a href="mailto:saif.buheis@gmail.com">saif.buheis@gmail.com</a></p>
+  <dl class="meta">
+    <div><dt>Phone</dt><dd><a class="num" href="tel:+16475881197">+1&nbsp;(647)&#8209;588&#8209;1197</a></dd></div>
+    <div><dt>GitHub</dt><dd><a href="https://github.com/SBprjcts" target="_blank" rel="noopener">github.com/SBprjcts</a></dd></div>
+    <div><dt>LinkedIn</dt><dd><a href="https://linkedin.com/in/saif-buheis" target="_blank" rel="noopener">linkedin.com/in/saif-buheis</a></dd></div>
+    <div><dt>Resume</dt><dd><a href="#">resume.pdf</a></dd></div>
+  </dl>
+  <footer>
+    <span>Saif Buheis, 2026</span>
+    <span>Toronto, ON</span>
+  </footer>
+</section>
+
+</main>
+
+<script src="site.js"></script>
+</body>
+</html>
