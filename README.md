@@ -10,7 +10,7 @@ Static single-page site. No build step, no dependencies.
 
 ## Deploy on GitHub Pages
 
-1. Push these files to the repository root on `main`.
+1. These files live at the repository root on `main`. Keep them there — Pages only serves from `/` or `/docs`.
 2. Settings → Pages → Build and deployment → Source: *Deploy from a branch*.
 3. Branch: `main`, folder: `/ (root)`. Save.
 
